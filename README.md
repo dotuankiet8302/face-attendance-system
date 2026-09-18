@@ -51,17 +51,13 @@ The liveness check depends on a separate model repo that isn't bundled here:
     git clone https://github.com/computervisioneng/Silent-Face-Anti-Spoofing.git
     pip install -r Silent-Face-Anti-Spoofing/requirements.txt
 
-Then, in `main.py`, update `model_dir` (used in both `login()` and `logout()`) to point at the `resources/anti_spoof_models` folder inside the repo you just cloned, e.g.:
-
-```python
-model_dir='./Silent-Face-Anti-Spoofing/resources/anti_spoof_models'
-```
+By default, `main.py` expects the cloned repo at `./Silent-Face-Anti-Spoofing` (next to `main.py`), via the `ANTI_SPOOF_MODEL_DIR` constant at the top of the file. If you cloned it somewhere else, update that constant to point at the `resources/anti_spoof_models` folder inside your clone.
 
 Also add the `Silent-Face-Anti-Spoofing` directory to your `PYTHONPATH` so `from test import test` in `main.py` resolves correctly.
 
 ## Webcam index
 
-`main.py` opens the webcam with `cv2.VideoCapture(2)`. Depending on your machine, your webcam may be at a different index (commonly `0`). If the video feed doesn't show up when you run the app, change the number in `add_webcam()` in `main.py` until it works.
+`main.py` opens the webcam using the `WEBCAM_INDEX` constant at the top of the file (defaults to `0`). If the video feed doesn't show up when you run the app, or you have multiple cameras, change that constant (e.g. `1`, `2`, ...) until it picks up the right one.
 
 ## Running the app
 
